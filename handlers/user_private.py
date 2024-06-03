@@ -506,7 +506,7 @@ async def back_cmd(message: types.Message, state: FSMContext) -> None:
     await message.answer("Действия отменены", reply_markup=Start_KeyBoard)
 
 
-@user_private_router.message(StateFilter(None), or_f(Command('qrcode_scan'), F.text.casefold() == 'добавление пользователя'))
+@user_private_router.message(StateFilter(None), F.text.casefold() == 'добавление пользователя'))
 async def photo_handler(message:types.Message, state: FSMContext):
     await message.answer('Введите id пользователя',reply_markup=Cancel_KeyBoard)
     await state.set_state(add_user.id_user)
